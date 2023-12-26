@@ -1,0 +1,40 @@
+public class ZigZagPrint {
+    public static void main(String[] args) {
+        String input = "zohocorporationteam";
+        int numRows = 7; // Number of rows in the zigzag pattern
+
+        printZigZag(input, numRows);
+    }
+
+    private static void printZigZag(String input, int numRows) {
+        if (numRows <= 1) {
+            System.out.println(input); // No zigzag pattern, print as is
+            return;
+        }
+
+        char[] charArray = input.toCharArray();
+        int len = charArray.length;
+
+        StringBuilder[] rows = new StringBuilder[numRows];
+        for (int i = 0; i < numRows; i++) {
+            rows[i] = new StringBuilder();
+        }
+
+        int index = 0;
+        while (index < len) {
+            for (int i = 0; i < numRows && index < len; i++) {
+                rows[i].append(charArray[index++]);
+            }
+            for (int i = numRows - 2; i > 0 && index < len; i--) {
+                rows[i].append(charArray[index++]);
+            }
+        }
+
+        // Print the zigzag pattern
+        for (StringBuilder row : rows) {
+            System.out.println(row.toString());
+        }
+    }
+}
+
+
